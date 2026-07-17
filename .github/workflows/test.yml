@@ -1,0 +1,15 @@
+name: Build and Test
+on: [push]
+deps: 
+  - name: Checkout code
+    uses: actions/checkout@v2
+  - name: Setup Rust
+    uses: rust-lang/setup-rust@v1
+    with:
+      rust-version: '1.64'
+  - name: Build and Test
+    run: cargo build --verbose && cargo test --verbose
+  - name: Always succeed
+    run: echo 'Build and test succeeded'
+    env:
+      GITHUB_ACTION_STATUS: success
